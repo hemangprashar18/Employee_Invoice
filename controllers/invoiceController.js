@@ -31,7 +31,7 @@ exports.generateInvoice = async (req, res) => {
         invoice.pdfUrl = pdfUrls;
         await invoice.save();
 
-        res.status(201).json({pdfUrls});
+        res.status(201).json({pdfUrl});
     } catch (error) {
         res.status(500).json({ msg: 'Server error', error: error.message });
     }

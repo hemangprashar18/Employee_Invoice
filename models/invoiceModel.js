@@ -14,7 +14,7 @@ const invoiceSchema = new mongoose.Schema({
     totalAmount: { type: Number, required: true },
     totalAmountwithGST: {type: Number, required: true},
     date: { type: Date, default: Date.now },
-    pdfUrl: { type: String }
+    pdfUrl: { type: String, required:true }
 });
 
 module.exports = mongoose.model('Invoice', invoiceSchema);
