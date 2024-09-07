@@ -27,8 +27,8 @@ exports.generateInvoice = async (req, res) => {
             totalAmountwithGST: totalWithGST 
         });
 
-        const pdfUrls = await generatePDF(invoice);
-        invoice.pdfUrl = pdfUrls;
+        const pdfUrl = await generatePDF(invoice);
+        invoice.pdfUrl = pdfUrl;
         await invoice.save();
 
         res.status(201).json({pdfUrl});
