@@ -86,14 +86,24 @@ exports.generatePDF = async (invoice) => {
     
         await page.setContent(htmlContent);
     
-        const invoicesFolderPath = path.join(__dirname, '../invoices');
+        // const invoicesFolderPath = path.join(__dirname, '../invoices');
     
-        const pdfPath = path.join(invoicesFolderPath, `invoice_${invoice._id}.pdf`);
+        // const pdfPath = path.join(invoicesFolderPath, `invoice_${invoice._id}.pdf`);
+        // await page.pdf({ path: pdfPath, format: 'A4' });
+
+        // return `/invoices/invoice_${invoice._id}.pdf`;
+    
+        // await browser.close();
+
+        const pdfPath = path.join('/tmp', `invoice_${invoice._id}.pdf`);
         await page.pdf({ path: pdfPath, format: 'A4' });
-    
+
         await browser.close();
+
+        // Return the URL for the stored PDF
+        return `https://assingment-moneeflo.onrender.com/invoices/invoice_${invoice._id}.pdf`;
+        
     
-        return `/invoices/invoice_${invoice._id}.pdf`;
     }catch(error){
         console.log(`Error generating PDF`,error);
     }
