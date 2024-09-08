@@ -6,6 +6,7 @@ exports.generatePDF = async (invoice) => {
     try{
         // const browser = await puppeteer.launch();
         const browser = await puppeteer.launch({
+            executablePath: process.env.CHROME_PATH,
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
         });
         const page = await browser.newPage();
