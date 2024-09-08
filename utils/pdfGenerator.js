@@ -8,7 +8,7 @@ exports.generatePDF = async (invoice) => {
         const browser = await puppeteer.launch({
             executablePath: '/usr/bin/chromium-browser',
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
-            protocolTimeout: 0,
+            timeout: 0,
             headless: true,
         });
         const page = await browser.newPage();
@@ -115,3 +115,7 @@ exports.generatePDF = async (invoice) => {
     }
 
 }
+
+process.on('exit', async () => {
+    if (browser) await browser.close();
+});
