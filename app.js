@@ -12,21 +12,18 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-//..
+
 mongoose.connect('mongodb+srv://thome3100:MspXD2YvRaOflqfR@test-prod.30wxq.mongodb.net/?retryWrites=true&w=majority&appName=test-prod')
 .then(() => console.log('Connected to MongoDB Atlas'))
 .catch(err => console.error('Error connecting to MongoDB', err));
 
 const authRoutes = require('./routes/authRoutes');
-// const productRoutes = require('./routes/productRoutes');
 const invoiceRoutes = require('./routes/invoiceRoutes');
 
 app.use('/api/auth', authRoutes);
-// app.use('/api/products', productRoutes);
 app.use('/api/invoices', invoiceRoutes);
 
 app.use('/invoices', express.static(path.join(__dirname, 'invoices')));
-// app.use('/invoices', express.static(path.join('/tmp')));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
