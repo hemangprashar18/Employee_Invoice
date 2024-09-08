@@ -85,16 +85,18 @@ exports.generatePDF = async (invoice) => {
     ;
     
         await page.setContent(htmlContent);
-    
+        console.log("hua");
         const invoicesFolderPath = path.join(__dirname, '../invoices');
-    
+        console.log("baad waa");
         const pdfPath = path.join(invoicesFolderPath, `invoice_${invoice._id}.pdf`);
         await page.pdf({ path: pdfPath, format: 'A4' });
 
+        console.log("iske baad");
         
         await browser.close();
-        
-        return `https://assingment-moneeflo.onrender.com/invoices/invoice_${invoice._id}.pdf`;
+        console.log("huaaa");
+        // return `https://assingment-moneeflo.onrender.com/invoices/invoice_${invoice._id}.pdf`;
+        return pdfPath;
         // const pdfPath = path.join('/tmp', `invoice_${invoice._id}.pdf`);
         // await page.pdf({ path: pdfPath, format: 'A4' });
 
