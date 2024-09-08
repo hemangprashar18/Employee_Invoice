@@ -8,7 +8,7 @@ const invoiceSchema = new mongoose.Schema({
             qty: Number,
             rate: Number,
             gst: Number,
-            userId: { type: mongoose.Schema.Types.ObjectId}  // Assuming you have a User model,
+            userId: { type: mongoose.Schema.Types.ObjectId}
         }
     ],
     totalAmount: { type: Number, required: true },

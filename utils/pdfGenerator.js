@@ -1,10 +1,8 @@
 const puppeteer = require('puppeteer');
 const path = require('path');
-const fs = require('fs');
 
 exports.generatePDF = async (invoice) => {
     try{
-        // const browser = await puppeteer.launch();
         const browser = await puppeteer.launch({
             executablePath: '/usr/bin/chromium-browser',
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
@@ -88,34 +86,15 @@ exports.generatePDF = async (invoice) => {
     ;
     
         await page.setContent(htmlContent);
-        console.log("hua");
         const invoicesFolderPath = path.join(__dirname, '../invoices');
-        console.log("baad waa");
         const pdfPath = path.join(invoicesFolderPath, `invoice_${invoice._id}.pdf`);
         await page.pdf({ path: pdfPath, format: 'A4' });
-
-        console.log("iske baad");
         
         await browser.close();
-        console.log("huaaa");
-        // return `https://assingment-moneeflo.onrender.com/invoices/invoice_${invoice._id}.pdf`;
         return `/invoices/invoice_${invoice._id}.pdf`;
-
-        // const pdfPath = path.join('/tmp', `invoice_${invoice._id}.pdf`);
-        // await page.pdf({ path: pdfPath, format: 'A4' });
-
-        // await browser.close();
-
-        // Return the URL for the stored PDF
-        // return `https://assingment-moneeflo.onrender.com/invoices/invoice_${invoice._id}.pdf`;
-        
     
     }catch(error){
         console.log(`Error generating PDF`,error);
     }
 
 }
-
-process.on('exit', async () => {
-    if (browser) await browser.close();
-});

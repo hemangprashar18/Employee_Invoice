@@ -1,10 +1,10 @@
 const Invoice = require('../models/invoiceModel');
 const { generatePDF } = require('../utils/pdfGenerator');
 
-// to generate invoice of that particular user
+// to generate invoice
 exports.generateInvoice = async (req, res) => {
-    const { products } = req.body;  // Get products from the request body
-    const userId = req.user.userId;  // Extract userId from the JWT token
+    const { products } = req.body; 
+    const userId = req.user.userId;
 
     try {
         const updatedProducts = products.map(product => {
@@ -37,7 +37,7 @@ exports.generateInvoice = async (req, res) => {
     }
 };
 
-// to view invoices pdf url of all users
+// to view invoices pdf of all users
 exports.viewInvoices = async (req, res) => {
     try {
         const invoices = await Invoice.find({},{pdfUrl:1,_id:0});
