@@ -6,9 +6,10 @@ exports.generatePDF = async (invoice) => {
     try{
         // const browser = await puppeteer.launch();
         const browser = await puppeteer.launch({
-            executablePath: process.env.CHROME_PATH,
+            executablePath: '/usr/bin/chromium-browser',
             args: ['--no-sandbox', '--disable-setuid-sandbox'],
-            protocolTimeout: 70000,
+            protocolTimeout: 0,
+            headless: true,
         });
         const page = await browser.newPage();
         const htmlContent = `
@@ -98,7 +99,8 @@ exports.generatePDF = async (invoice) => {
         await browser.close();
         console.log("huaaa");
         // return `https://assingment-moneeflo.onrender.com/invoices/invoice_${invoice._id}.pdf`;
-        return pdfPath;
+        return `/invoices/invoice_${invoice._id}.pdf`;
+
         // const pdfPath = path.join('/tmp', `invoice_${invoice._id}.pdf`);
         // await page.pdf({ path: pdfPath, format: 'A4' });
 
