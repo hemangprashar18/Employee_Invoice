@@ -25,8 +25,8 @@ app.use('/api/auth', authRoutes);
 // app.use('/api/products', productRoutes);
 app.use('/api/invoices', invoiceRoutes);
 
-// app.use('/invoices', express.static(path.join(__dirname, 'invoices')));
-app.use('/invoices', express.static(path.join('/tmp')));
+app.use('/invoices', express.static(path.join(__dirname, 'invoices')));
+// app.use('/invoices', express.static(path.join('/tmp')));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
