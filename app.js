@@ -25,6 +25,10 @@ app.use('/api/invoices', invoiceRoutes);
 
 app.use('/invoices', express.static(path.join(__dirname, 'invoices')));
 
+app.get('/', (req, res) => {
+  res.send('Welcome to the Moneeflo Assignment.Please use postman for Creating User and Generating Invoice');
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
