@@ -7,7 +7,8 @@ RUN apk add --no-cache \
     freetype-dev \
     harfbuzz \
     ca-certificates \
-    ttf-freefont \
+    ttf-freefont
+RUN apt-get install -y chromium-browser
 COPY package.json /app/
 RUN npm install
 COPY . /app/
