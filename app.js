@@ -13,7 +13,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect('mongodb+srv://thome3100:MspXD2YvRaOflqfR@test-prod.30wxq.mongodb.net/?retryWrites=true&w=majority&appName=test-prod')
+mongoose.connect(process.env.MONGO_URL)
 .then(() => console.log('Connected to MongoDB Atlas'))
 .catch(err => console.error('Error connecting to MongoDB', err));
 
